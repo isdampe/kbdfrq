@@ -10,8 +10,10 @@ make
 
 ## Running
 
+`Usage: kbdfrq [keyboard_device]`
+
 ```bash
-sudo ./bin/kbdfrq
+sudo ./bin/kbdfrq [/dev/input/keyboard0]
 ```
 
 Your logs will appear in the current directory using the format `m-d-Y.json`. 
